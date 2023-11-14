@@ -14,13 +14,13 @@ The snippets that this plugin provides end with "." (dot)
 
 For example: exampleSnippet.
 
-To expand a snippet the cursor must be on the "." character in insert mode and
-you must press SPACE or TAB key. Any other key press will result the key to be
-like a normal key press in instert mode and prevent the snippet text from
-expanding
+To unleash a snippet's magic, position the cursor on the "." character in 
+insert mode and then press the SPACE, TAB, or ESC key. Any other keypress 
+will cause the key to be treated as a normal keypress in insert mode, 
+preventing the expansion of the snippet text.
 
 You can escape a word ending with a ". " or a ".<Tab>" from expanding like
-snippet by typing <C-v> followed by hitting space or tab.
+snippet by typing <C-v> followed by SPACE or TAB.
 
 Some of the snippets have marks in them which allows easy traversal of the
 snippet
