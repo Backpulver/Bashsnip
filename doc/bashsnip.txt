@@ -1,0 +1,113 @@
+*bashsnip.txt* 	    Realisation of bash snippets and evaluation of code in vim
+
+==============================================================================
+CONTENTS                                                              *bashsnip*
+
+    Snippets...............................: |bashsnip-snippets|
+    Hash Rocket............................: |bashsnip-hash-rocket|
+
+
+==============================================================================
+SNIPPETS                                                     *bashsnip-snippets*
+
+The snippets that this plugin provides end with "." (dot)
+
+For example: exampleSnippet.
+
+To expand a snippet the cursor must be on the "." character in insert mode and
+you must press SPACE or TAB key. Any other key press will result the key to be
+like a normal key press in instert mode and prevent the snippet text from
+expanding
+
+You can escape a word ending with a ". " or a ".<Tab>" from expanding like
+snippet by typing <C-v> followed by hitting space or tab.
+
+Some of the snippets have marks in them which allows easy traversal of the
+snippet
+Jumping forward to a mark in a snippet is done with <Tab><Tab> in normal mode
+
+Bash snippets that this plugin provides: ~
+
+$0 is the initial position of the cursor
+Every other number ($1, $2) is the next mark that the cursor can jump to
+
+bash.     | -> #!/bin/bash
+#!.       |    $0
+shebang.  |
+
+read.     | -> read -r $0
+
+echo.     | -> echo "$0"
+
+echoerr.  | -> echo "" >&2
+
+if.       | -> if [[ $0 ]]; then
+          |    $1
+          |    fi$2
+
+el.       | -> else
+          |    $0
+
+ife.      | -> if [[ $0 ]]; then
+          |    $1
+          |    else
+          |    $2
+          |    fi$3
+
+elif.     | -> elif [[ $0 ]]; then
+          |    $1
+
+foreach.  | -> for $0item in $1; then
+          |    $2
+          |    done $3
+
+fori.     | -> for ((i=1; i<$0; i++)); do
+          |    $1
+          |    done $2
+
+while.    | -> while [[ $0 ]]; do
+          |    $1
+          |    done $2
+
+until.    | -> until [[ $0 ]]; do
+          |    $1
+          |    done $2
+
+br.       | -> break$0
+
+cont.     | -> continue$0
+
+e.        | exit $0
+
+void.     | -> $0 ()
+function. |    {
+func.     |    $1
+          |    }
+          |    $2
+
+readfile. | -> while IFS= read -r line; do
+readf.    |    $0
+          |    done < $1
+
+==============================================================================
+HASH ROCKET                                               *bashsnip-hash-rocket*
+
+The hash rocket is a special type of comment that looks line this: # =>
+
+It can be used to evaluate the string of the left hand side of
+the rocket as a command and the output will be pasted on the lines below the
+rocket as comments
+
+Usage: ~
+Add # => comment at the end of a line
+When the cursor is on the space after "# =>" in insert mode press <Esc>
+
+This will alloy the hash rocket to evaluate the string to the left and will
+produce the output as comments
+
+If the line has an error or cannot be evaluated the error from the subshell
+will be printed as a comment
+
+After the comments are typed the cursor will be placed at the end of the last
+line in insert mode
+==============================================================================
